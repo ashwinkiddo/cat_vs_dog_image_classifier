@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing import image
 from werkzeug.utils import secure_filename
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "cat_dog_model_best.h5")
+MODEL_PATH = os.path.join(BASE_DIR, "cat_dog_model_best.keras")
 IMG_SIZE = 224
 UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "uploads")
 MEDIA_FOLDER = os.path.join(BASE_DIR, "media")

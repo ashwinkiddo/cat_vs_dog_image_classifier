@@ -2,12 +2,14 @@ import os
 import uuid
 import numpy as np
 from flask import Flask, render_template, request, jsonify, send_from_directory
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D, BatchNormalization
+from tensorflow.keras.applications import VGG16
 from tensorflow.keras.preprocessing import image
 from werkzeug.utils import secure_filename
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "cat_dog_model_best.keras")
+WEIGHTS_PATH = os.path.join(BASE_DIR, "cat_dog_model.weights.h5")
 IMG_SIZE = 224
 UPLOAD_FOLDER = os.path.join(BASE_DIR, "static", "uploads")
 MEDIA_FOLDER = os.path.join(BASE_DIR, "media")
@@ -22,7 +24,20 @@ app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 print("Loading trained model...")
-model = load_model(MODEL_PATH)
+base_model = VGG16(weights="imagenet", include_top=False, input_shape=(IMG_SIZE, IMG_SIZE, 3))
+for layer in base_model.layers:
+    layer.trainable = False
+x = base_model.output
+x = GlobalAveragePooling2D()(x)
+x = Dense(512, activation="relu")(x)
+x = BatchNormalization()(x)
+x = Dropout(0.5)(x)
+x = Dense(256, activation="relu")(x)
+x = BatchNormalization()(x)
+x = Dropout(0.3)(x)
+predictions = Dense(1, activation="sigmoid")(x)
+model = Model(inputs=base_model.input, outputs=predictions)
+model.load_weights(WEIGHTS_PATH)
 print("Model loaded successfully!")
 
 

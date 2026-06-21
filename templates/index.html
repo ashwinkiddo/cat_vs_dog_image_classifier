@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cat vs Dog — The Ultimate Debate</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=3" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Bangers&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <button id="sound-toggle" class="sound-toggle" type="button" aria-label="Mute sound" title="Mute sound">🔊 Sound On</button>
+
+  <!-- Animated background -->
+  <div class="bg-blob b1"></div>
+  <div class="bg-blob b2"></div>
+  <div class="bg-blob b3"></div>
+  <div class="bg-blob b4"></div>
+  <div class="bg-paws"></div>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header" id="main-header">
+      <img src="/media/Chatbot%20head.png" alt="Chatbot" class="chatbot-head" />
+      <h1 class="title">🐾 Cat <span class="vs-pill">VS</span> Dog 🐾</h1>
+      <p class="tagline">Drop a photo. Our AI settles the greatest debate in human history. 🔬</p>
+    </header>
+
+    <!-- Stage: Dog | Upload | Cat -->
+    <div class="stage" id="stage">
+
+      <!-- Left: Dog -->
+      <div class="side-panel">
+        <div class="animal-card dog-card">
+          <div class="animal-frame" id="dog-frame">
+            <img class="a-img a-normal" src="/media/dog.png" alt="Dog" />
+            <img class="a-img a-sleepy" src="/media/sleeepy%20dog.jpg" alt="Sleepy Dog" />
+          </div>
+        </div>
+        <div class="team-badge dog-badge">🐶 Team Dog</div>
+      </div>
+
+      <!-- Center: Upload + Button -->
+      <div class="center-panel">
+        <div class="upload-zone" id="upload-zone">
+          <div class="upload-content" id="upload-content">
+            <div class="up-icon">⬇️</div>
+            <p class="up-text">Drop your<br/><strong>furry suspect</strong></p>
+            <label for="file-input" class="browse-btn">Browse</label>
+            <input type="file" id="file-input" accept="image/*" hidden />
+          </div>
+          <div class="preview-wrapper" id="preview-wrapper" style="display:none">
+            <img id="preview-img" src="" alt="Preview" />
+            <button id="change-btn" class="change-btn">✕</button>
+          </div>
+        </div>
+
+        <button id="classify-btn" class="classify-btn" disabled>
+          <span class="btn-text">🔍 Identify!</span>
+          <span class="btn-loader" id="btn-loader"></span>
+        </button>
+
+        <!-- Meme loading box -->
+        <div class="meme-box" id="meme-box" style="display:none">
+          <div class="meme-dots"><span></span><span></span><span></span></div>
+          <p class="meme-line" id="meme-line">one eternity later...</p>
+        </div>
+      </div>
+
+      <!-- Right: Cat -->
+      <div class="side-panel">
+        <div class="animal-card cat-card">
+          <div class="animal-frame" id="cat-frame">
+            <img class="a-img a-normal" src="/media/cat.png" alt="Cat" />
+            <img class="a-img a-sleepy" src="/media/sleepy%20cat.jpg" alt="Sleepy Cat" />
+          </div>
+        </div>
+        <div class="team-badge cat-badge">😺 Team Cat</div>
+      </div>
+
+    </div><!-- /stage -->
+
+    <!-- Result card -->
+    <div class="result-card" id="result-card" style="display:none">
+      <div class="cinema-wrap">
+        
+        <img class="cinema-img" id="cinema-img" src="" alt="Absolute Cinema" />
+        <div class="cinema-vignette"></div>
+        
+      </div>
+      <div class="result-info">
+        <p class="result-verdict" id="result-label"></p>
+        <div class="conf-bar-wrap">
+          <div class="conf-bar" id="confidence-bar"></div>
+        </div>
+        <p class="conf-text">Confidence: <strong id="confidence-value"></strong></p>
+        <button id="try-again-btn" class="try-again-btn">⟲ Try Another Suspect</button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Powered by 22,400 training images &amp; caffeine ☕🧠</span>
+      <span class="dot">•</span>
+      <span>Built with Flask · TensorFlow · VGG16 Transfer Learning</span>
+      <span class="dot">•</span>
+      <span>96.75% Accuracy</span>
+    </footer>
+
+  </div>
+
+  <script src="/static/js/app.js?v=11"></script>
+</body>
+</html>

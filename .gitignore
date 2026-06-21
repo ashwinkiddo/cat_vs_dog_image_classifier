@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# Runtime uploads
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Training data (not needed for runtime deploy)
+dataset/
+
+# OS files
+.DS_Store
+Thumbs.db
